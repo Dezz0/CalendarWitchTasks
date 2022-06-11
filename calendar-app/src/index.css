@@ -1,13 +1,332 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300&family=Raleway:ital,wght@1,300&family=Rubik:wght@300&display=swap');
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Bebas Neue', cursive;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 1000px;
+  height: 100%;
+  min-height: 500px;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  display: flex;
+}
+
+td {
+  border: 2px solid rgba(255, 228, 196, 0.671);
+  flex: 1 1;
+  max-width: 137px;
+}
+
+td:not(last-child) {
+  margin-right: 1px;
+  margin-bottom: 1px;
+}
+
+
+.dayOfWeek {
+  padding: 5px;
+  background-color: #2c2f38;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 900;
+  color: #E78446;
+}
+
+.day {
+  text-align: end;
+  min-height: 95px;
+  cursor: pointer;
+  background-color: #3C404C;
+  color: white;
+  overflow: hidden;
+}
+
+.day:hover:not(.today) {
+  background-color: rgb(226, 226, 226);
+}
+
+tbody td {
+  background-color: rgba(119, 136, 153, 0.664);
+}
+
+.today {
+  background-color: #c6e6ff;
+  border: 2px solid #5a9bcf;
+  color: black;
+}
+
+.day h3 {
+  display: inline-block;
+  padding: 7px;
+}
+
+.day p {
+  padding: 5px;
+  color: #E78446;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.info_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info_date h1 {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 45px;
+}
+
+.info_date h2 {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-bottom: auto;
+}
+
+.select-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1 1;
+}
+
+.btn {
+  padding: 0.7rem 1rem;
+  background-color: #3C404C;
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #E78446;
+}
+
+.btn:active {
+  background-color: #23252c;
+}
+
+.btn:hover {
+  box-shadow: 0 0 5px rgb(134, 134, 134);
+}
+
+.select {
+  display: inline;
+  width: 35%;
+  min-width: 80px;
+  padding: .75rem 0.5rem .75rem 1rem;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #444;
+  cursor: pointer;
+}
+
+.select:hover {
+  border: 1px solid rgb(134, 134, 134);
+}
+
+.select:nth-child(2) {
+  margin: 10px;
+}
+
+.select:first-of-type {
+  margin-left: 10px;
+}
+
+.popup-content {
+  box-sizing: border-box;
+  top: 50% !important;
+  left: 50% !important;
+  width: 280px !important;
+  height: 175px;
+  margin-top: -85px;
+  margin-left: -140px;
+  padding: 15px;
+  background-color: #3C404C;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+
+}
+
+.modal h3 {
+  color: white;
+  width: 100%;
+  border-bottom: 1px solid white;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal input {
+  border-radius: 5px;
+  border: 1px solid lightslategray;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-child {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.modal-child p {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-add,
+.btn-edit,
+.btn-del,
+.btn-save,
+.btn-done {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid lightslategray;
+  background-color: #3C404C;
+  color: #E78446;
+}
+
+
+.btn-edit {
+  width: 110px;
+  font-size: 13px;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.btn-add {
+  width: 90px;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.btn-del {
+  width: 80px;
+  font-size: 13px;
+  padding: 3px;
+}
+
+.btn-save {
+  width: 80px;
+  font-size: 13px;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.btn-done {
+  width: 110px;
+  font-size: 13px;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.btn-add:hover,
+.btn-edit:hover,
+.btn-del:hover,
+.btn-save:hover,
+.close:hover,
+.btn-done:hover {
+  background-color: #555b6d;
+}
+
+.btn-add:active,
+.btn-edit:active,
+.btn-del:active,
+.btn-save:active,
+.btn-done:active {
+  background-color: #2c2f38;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #3C404C;
+  color: #E78446;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+.close:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 753px) {
+  .header {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .calendar {
+    height: 100%;
+  }
 }
